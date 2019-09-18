@@ -1,0 +1,23 @@
+{
+  "name": "crae-example",
+  "version": "1.0.0",
+  "description": "Create-react-app with Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "author": "Chloe Chong",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cors": "^2.8.4",
+    "cowsay": "^1.3.1",
+    "dotenv": "^8.1.0",
+    "express": "^4.16.3"
+  },
+  "engines": {
+    "node": "10.5.0"
+  }
+}
