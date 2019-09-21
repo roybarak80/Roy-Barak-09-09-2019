@@ -86,26 +86,26 @@ class Home extends Component {
                         <SearchAutocomplete></SearchAutocomplete>
                     </div>
                 </div>
-                <div className="row curr-weather-box">
-                    <div className="col-md-12 direction-column-space-between">
-                        <div className="row">
-                            <div className="col-md-12 flex-spread-evenly">
-                                <Fade top>
+                <div className="curr-weather-box direction-column-space-between">
 
-                                    <CurrentWeather weatherInfo={currWeatherObj} ></CurrentWeather>
-                                    <AddToFavorites cityCode={cityCode}></AddToFavorites>
 
-                                </Fade>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-12">
-                                <Fade top>
-                                    <CurrForecast currForecast={currForecastObj}></CurrForecast>
-                                </Fade>
-                            </div>
-                        </div>
+                    <div className="flex-spread-evenly transparent-strip">
+                        <Fade top>
+
+                            <CurrentWeather weatherInfo={currWeatherObj} ></CurrentWeather>
+                            <AddToFavorites cityCode={cityCode}></AddToFavorites>
+
+                        </Fade>
                     </div>
+
+                    <div className="forecast-panels">
+
+                        <Fade top>
+                            <CurrForecast currForecast={currForecastObj}></CurrForecast>
+                        </Fade>
+
+                    </div>
+
                 </div>
                 <ToastContainer autoClose={2000} />
             </div>
