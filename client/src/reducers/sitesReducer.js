@@ -70,10 +70,6 @@ const sitesReducer = (state = initState, action) => {
             if (cityCode.length > 0) {
                 outCityCode = parseInt(cityCode[0]['key'])
             }
-            // state = {
-            //     ...state,
-            //     cityCode: outCityCode
-            // }
 
             return Object.assign({}, state, { cityCode: outCityCode, isShowResults: false });
 
@@ -137,7 +133,6 @@ const sitesReducer = (state = initState, action) => {
             )[0];
             let currFavoriteIndex = state.currFavorites.indexOf(favoriteToDelete);
 
-            console.log(currFavoriteIndex);
             if (currFavoriteIndex !== -1) {
 
                 state.currFavorites.splice(currFavoriteIndex, 1);

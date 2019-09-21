@@ -41,10 +41,11 @@ const SearchAutocomplete = ({
 };
 
 const mapStateToProps = state => {
-   
+
     return {
         selectedCity: state.sitesReducer.selectedCity,
         searchResults: state.sitesReducer.searchResults,
+        isDarkTheme: state.sitesReducer.isDarkTheme,
     }
 }
 
