@@ -24,7 +24,6 @@ const useStyles = makeStyles(theme => ({
 const CurrForecast = (props) => {
     const classes = useStyles();
     const { currForecast } = props;
-    console.log(currForecast)
     const tempIcon = currForecast.isMetricUnits ? '&#8451;' : '&#8457;';
     let inputhtml = tempIcon;
     if (currForecast) {

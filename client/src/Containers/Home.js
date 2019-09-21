@@ -59,8 +59,6 @@ class Home extends Component {
 
         const { cityCode } = this.props;
         const { isMetricUnits } = this.props;
-        const { currWeather } = this.props;
-        const isDayTime = currWeather[0].IsDayTime;
 
         if (prevProps.cityCode !== cityCode) {
             this.props.getCurrentWeather(cityCode);
@@ -79,7 +77,7 @@ class Home extends Component {
         const { currWeather } = this.props;
         const { isMetricUnits } = this.props;
         const isDayTime = currWeather ? currWeather[0].IsDayTime : null;
-        
+
         const currWeatherObj = currWeather ? helpers.getWeatherFilteredDataObj(currWeather, isMetricUnits) : {};
         const currForecastObj = Object.assign({}, currForecast ? currForecast : {}, { isMetricUnits: isMetricUnits }, { isDayTime: isDayTime });
 
