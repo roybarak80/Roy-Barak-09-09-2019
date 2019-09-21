@@ -8,39 +8,11 @@ const axios = require('axios');
 //const env = dotenv.config();
 // Create the server
 const app = express()
-const moviesApi = require('./client/server/api/weatherApi');
+
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')))
 
-app.get('/images/:term', cors(), async (req, res, next) => {
-  try {
-    let term = req.params.term;
-
-    //let url = `https://jsonplaceholder.typicode.com/todos/${query}`;
-    let url = process.env.apiUrl;
-    //&client_id=${process.env.apiKey}
-    axios({
-      method: 'get',
-      url,
-      params: { query: term },
-      headers: {
-        Authorization: process.env.apiKey
-
-      }
-
-    })
-      .then(function (response) {
-        console.log(response);
-        res.send(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  } catch (err) {
-    next(err)
-  }
-})
 
 
 // Serve our api route /cow that returns a custom talking text cow
