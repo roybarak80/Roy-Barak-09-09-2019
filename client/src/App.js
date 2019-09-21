@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from './Containers/Home';
 import Favorites from './Containers/Favorites';
-import SideMenu from './Containers/SideMenu';
+import SideMenu from './Components/SideMenu';
 
 
 const App = ({ isDarkTheme }) => (

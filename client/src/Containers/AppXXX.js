@@ -3,7 +3,7 @@ import NavBar from '../Components/NavBar';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from './Home';
-import Favorites from '../Containers/Favorites';
+import Favorites from './Favorites';
 import SideMenu from '../Components/SideMenu';
 //require('dotenv').config()
 
