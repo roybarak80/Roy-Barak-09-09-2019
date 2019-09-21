@@ -1,22 +1,28 @@
 
 import { toast } from "react-toastify";
 import helpers from '../helpers/Helpers';
+import axios from 'axios';
 
 export const checkForCityCode = (cityCodeObj) => {
 
     return async dispatch => {
 
-        fetch(`/getCityKeyByGeoPosition/${cityCodeObj.latitude}/${cityCodeObj.longitude}`)
-            .then(function (response) {
+        axios
+            .get(
+                `/getCityKeyByGeoPosition/${cityCodeObj.latitude}/${cityCodeObj.longitude}`
+            )
+            .then(data => {
 
-                return response.json();
-            })
-            .then(function (data) {
                 return dispatch({
                     type: "CHECK_FOR_CITYCODE",
-                    payload: data.Key
+                    payload: data.data.Key
                 });
+            })
+            .catch(err => {
+                console.log('Error happened during fetching!', err);
             });
+
+
     };
 
 
@@ -38,17 +44,21 @@ export const checkForFavorite = (cityCode) => {
 export const getCurrentWeather = (prmCityCode) => {
 
     return async dispatch => {
+        axios
+            .get(
+                `/getCurrentWeather/${prmCityCode}`
+            )
+            .then(data => {
 
-        fetch(`/getCurrentWeather/${prmCityCode}`)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
                 return dispatch({
                     type: "GET_CURRENT_WEATHER",
-                    payload: data
+                    payload: data.data
                 });
+            })
+            .catch(err => {
+                console.log('Error happened during fetching!', err);
             });
+
     };
 };
 
@@ -56,17 +66,21 @@ export const getCurrentForecast = (prmCityCode, prmIsMetricUnits) => {
 
     return async dispatch => {
 
-        fetch(`/getCurrentForecast/${prmCityCode}/${prmIsMetricUnits}`)
-            .then(function (response) {
+        axios
+            .get(
+                `/getCurrentForecast/${prmCityCode}/${prmIsMetricUnits}`
+            )
+            .then(data => {
 
-                return response.json();
-            })
-            .then(function (data) {
                 return dispatch({
                     type: "GET_CURRENT_FORECAST",
-                    payload: data
+                    payload: data.data
                 });
+            })
+            .catch(err => {
+                console.log('Error happened during fetching!', err);
             });
+
     };
 };
 
@@ -100,17 +114,22 @@ export const searchCityAutoComplete = searchText => {
     } else {
         return async dispatch => {
 
-            fetch(`/searchCityAutoComplete/${searchText}`)
-                .then(function (response) {
+            axios
+                .get(
+                    `/searchCityAutoComplete/${searchText}`
+                )
+                .then(data => {
 
-                    return response.json();
-                })
-                .then(function (data) {
                     return dispatch({
                         type: "AUTOCOMPLETE_SEARCH",
-                        payload: data
+                        payload: data.data
                     });
+                })
+                .catch(err => {
+                    console.log('Error happened during fetching!', err);
                 });
+
+
         };
     }
 

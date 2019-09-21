@@ -117,7 +117,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
+
     return {
         currWeather: state.sitesReducer.currWeather,
         currForecast: state.sitesReducer.currForecast,

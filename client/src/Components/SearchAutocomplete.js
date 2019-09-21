@@ -41,7 +41,7 @@ const SearchAutocomplete = ({
 };
 
 const mapStateToProps = state => {
-    console.log(state)
+   
     return {
         selectedCity: state.sitesReducer.selectedCity,
         searchResults: state.sitesReducer.searchResults,

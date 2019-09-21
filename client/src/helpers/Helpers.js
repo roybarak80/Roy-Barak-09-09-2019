@@ -30,7 +30,7 @@ const helpers = {
             return cityGeoLocationObj;
         }
 
-        
+
 
     },
 
@@ -74,7 +74,7 @@ const helpers = {
             Date: '',
         };
 
-        if (!!prmCurrWeatherObj && prmCurrWeatherObj.length > 0) {
+        if (!!prmCurrWeatherObj && prmCurrWeatherObj.length > 0 && Array.isArray(prmCurrWeatherObj)) {
             const currWeatherObj = prmCurrWeatherObj[0];
 
             let weatherIcon = '';
