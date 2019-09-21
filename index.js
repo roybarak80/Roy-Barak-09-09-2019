@@ -1,52 +1,146 @@
 const express = require('express')
-const cowsay = require('cowsay')
 const cors = require('cors')
 const path = require('path')
-require('dotenv').config();
-const dotenv = require('dotenv');
 const axios = require('axios');
-//const env = dotenv.config();
+require('dotenv').config();
 // Create the server
 const app = express()
-
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')))
 
+//geoposition
+app.get('/getCityKeyByGeoPosition/:cityLat/:cityLon', cors(), async (req, res, next) => {
+    try {
 
+        let cityLat = req.params.cityLat;
+        let cityLon = req.params.cityLon;
 
-// Serve our api route /cow that returns a custom talking text cow
+        let url = `${process.env.API_URL}locations/v1/cities/geoposition/search?apikey=${process.env.API_KEY}&q=${cityLat},${cityLon}`;
 
+        axios({
+            method: 'get',
+            url, headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
 
+        })
+            .then(function (response) {
+                res.send(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    } catch (err) {
+        next(err)
+    }
+})
 
-// app.get('/api/cow/:say', cors(), async (req, res, next) => {
-//   try {
-//     console.log(process.env.FOO)
-//     const text = req.params.say
-//     const moo = cowsay.say({ text })
-//     res.json({ moo })
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+app.get('/getCurrentWeather/:cityCode', cors(), async (req, res, next) => {
+    try {
 
-// Serve our base route that returns a Hellow World cow
-app.get('/api/cow/', cors(), async (req, res, next) => {
-  try {
-    const moo = cowsay.say({ text: 'Hello World!' })
-    res.json({ moo })
-  } catch (err) {
-    next(err)
-  }
+        let cityCode = req.params.cityCode;
+        if (cityCode.length == 0) {
+            console.log(34)
+        }
+        let url = `${process.env.API_URL}currentconditions/v1/${cityCode}?apikey=${process.env.API_KEY}`;
+
+        axios({
+            method: 'get',
+            url,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+
+        })
+            .then(function (response) {
+                res.send(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    } catch (err) {
+        next(err)
+    }
+})
+
+app.get('/getCurrentForecast/:CityCode/:IsMetricUnits', cors(), async (req, res, next) => {
+    try {
+        let CityCode = req.params.CityCode;
+        let IsMetricUnits = req.params.IsMetricUnits;
+        let url = `${process.env.API_URL}forecasts/v1/daily/5day/${CityCode}?apikey=${process.env.API_KEY}&metric=${IsMetricUnits}`;
+
+        axios({
+            method: 'get',
+            url,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+
+        })
+            .then(function (response) {
+                res.send(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    } catch (err) {
+        next(err)
+    }
+})
+
+app.get('/searchCityAutoComplete/:term', cors(), async (req, res, next) => {
+    try {
+
+        let term = req.params.term;
+
+        let url = `${process.env.API_URL}locations/v1/cities/autocomplete?apikey=${process.env.API_KEY}&q=${term}`
+        axios({
+            method: 'get',
+            url,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then(function (response) {
+                let dataToLower = [];
+                for (let index = 0; index < response.data.length; index++) {
+                    const element = response.data[index];
+                    delete element.Country;
+                    delete element.AdministrativeArea;
+                    delete element.Rank;
+                    delete element.Type;
+                    delete element.Version;
+
+                    dataToLower.push(Object.keys(element)
+                        .reduce((destination, key) => {
+                            destination[key.toLowerCase()] = element[key];
+                            return destination;
+                        }, {}));
+
+                }
+
+                res.send(JSON.stringify(dataToLower));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    } catch (err) {
+        next(err)
+    }
 })
 
 // Anything that doesn't match the above, send back the index.html file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'))
+    res.sendFile(path.join(__dirname + '/client/public/index.html'))
 })
 
 // Choose the port and start the server
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
-  console.log(`Mixing it up on port ${PORT}`)
+    console.log(`Mixing it up on port ${PORT}`)
 })
