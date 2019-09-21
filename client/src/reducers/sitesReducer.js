@@ -14,7 +14,8 @@ const initState = {
     searchResults: [],
     selectedCity: '',
     isShowDeleteFavoriteBtn: false,
-    cityGeoLocationObj: {}
+    cityGeoLocationObj: {},
+    isDayTime: null,
 }
 
 const sitesReducer = (state = initState, action) => {

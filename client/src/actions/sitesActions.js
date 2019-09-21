@@ -1,15 +1,22 @@
-
-import { toast } from "react-toastify";
+import {
+    toast
+} from "react-toastify";
 import helpers from '../helpers/Helpers';
 import axios from 'axios';
 
-export const checkForCityCode = (cityCodeObj) => {
+/**
+ * checkForCityCode
+ * Get CityCode by Coordinates
+ * @param {object} cityCoordinates - Weather forecast object.
+ */
+
+export const checkForCityCode = (cityCoordinates) => {
 
     return async dispatch => {
 
         axios
             .get(
-                `/getCityKeyByGeoPosition/${cityCodeObj.latitude}/${cityCodeObj.longitude}`
+                `/getCityKeyByGeoPosition/${cityCoordinates.latitude}/${cityCoordinates.longitude}`
             )
             .then(data => {
 
@@ -29,10 +36,11 @@ export const checkForCityCode = (cityCodeObj) => {
 }
 
 /**
- * Checks if selected city is favorite
- *
- * @param {number} cityCode
+ * checkForFavorite
+ * Checks if a city is appears in favorites
+ * @param {number} cityCode - City key code.
  */
+
 export const checkForFavorite = (cityCode) => {
 
     return {
@@ -40,6 +48,12 @@ export const checkForFavorite = (cityCode) => {
         payload: cityCode
     };
 }
+
+/**
+ * getCurrentWeather
+ * Dispatch weather of current day and city 
+ * @param {number} cityCode - City key code.
+ */
 
 export const getCurrentWeather = (prmCityCode) => {
 
@@ -61,6 +75,13 @@ export const getCurrentWeather = (prmCityCode) => {
 
     };
 };
+
+/**
+ * getCurrentForecast
+ * Dispatch weekly forecast by city code lry 
+ * @param {number} cityCode - City key code.
+ * @param {boolean} prmIsMetricUnits - Is Metric Units.
+ */
 
 export const getCurrentForecast = (prmCityCode, prmIsMetricUnits) => {
 
@@ -84,6 +105,12 @@ export const getCurrentForecast = (prmCityCode, prmIsMetricUnits) => {
     };
 };
 
+/**
+ * toggleWeatherUnits
+ * Dispatch selected weather units (celsius \ fahrenheit) 
+ * @param {boolean} isMetricUnits - Is Metric Units.
+ */
+
 export const toggleWeatherUnits = (isMetricUnits) => {
 
     isMetricUnits = !isMetricUnits
@@ -93,6 +120,12 @@ export const toggleWeatherUnits = (isMetricUnits) => {
     };
 }
 
+/**
+ * onSelectCity
+ * Dispatch selected city 
+ * @param {string} textFeldValue -Selcted city key code.
+ */
+
 export const onSelectCity = (textFeldValue) => {
 
     return {
@@ -100,6 +133,12 @@ export const onSelectCity = (textFeldValue) => {
         payload: textFeldValue
     };
 }
+
+/**
+ * searchCityAutoComplete
+ * Dispatch autocomplete results 
+ * @param {string} searchText -Selcted city name.
+ */
 
 export const searchCityAutoComplete = searchText => {
 
@@ -134,6 +173,16 @@ export const searchCityAutoComplete = searchText => {
     }
 
 }
+
+/**
+ * addForecastToFavorites
+ * Adds city forecast to favorites 
+ * @param {number} currCityCode -City key code.
+ * @param {object} currWeather - Current city forecast.
+ * @param {boolean} currTempUnits -Is Metric Units.
+ * 
+ */
+
 export const addForecastToFavorites = (currCityCode, currWeather, currTempUnits) => {
 
     const currWeatherObj = helpers.getWeatherFilteredDataObj(currWeather, currTempUnits);
@@ -151,6 +200,13 @@ export const addForecastToFavorites = (currCityCode, currWeather, currTempUnits)
 
 }
 
+/**
+ * deleteForecastFromFavorites
+ * Delete city forecast from favorites 
+ * @param {number} favoriteID -City key code.
+ * 
+ */
+
 export const deleteForecastFromFavorites = (favoriteID) => {
 
     return {
@@ -158,6 +214,13 @@ export const deleteForecastFromFavorites = (favoriteID) => {
         payload: favoriteID
     };
 }
+
+/**
+ * toggleSideMenu
+ * Toggles Side Menu 
+ * @param {boolean} currSideMenuState -City key code.
+ * 
+ */
 
 export const toggleSideMenu = (currSideMenuState) => {
 
@@ -168,6 +231,13 @@ export const toggleSideMenu = (currSideMenuState) => {
     };
 }
 
+/**
+ * toggleThemeType
+ * Toggles between Dark and Light Theme
+ * @param {boolean} currThemeType - Current theme type.
+ * 
+ */
+
 export const toggleThemeType = (currThemeType) => {
 
     currThemeType = !currThemeType;
@@ -177,6 +247,13 @@ export const toggleThemeType = (currThemeType) => {
     };
 }
 
+/**
+ * getForecastByCityCode
+ * Dispatches favorite cities
+ * @param {object} favoriteCitiesNames - Current favorite cities.
+ * 
+ */
+
 export const getForecastByCityCode = (favoriteCitiesNames) => {
 
     return {
@@ -185,6 +262,3 @@ export const getForecastByCityCode = (favoriteCitiesNames) => {
     };
 
 }
-
-
-

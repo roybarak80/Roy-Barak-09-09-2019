@@ -1,51 +1,95 @@
-
 import moment from "moment";
 
 const helpers = {
 
-    getUserLocation: async function (prmCItyCode) {
+    convertTempToRgb: function () {
+        const temp = 30;
+        const maxTemp = 100;
+        const minTemp = 0;
 
-        let cityGeoLocationObj = {
-            latitude: '',
-            longitude: ''
+        const maxRed = 247;
+        const minRed = 61;
+
+        const maxGreen = 4;
+        const minGreen = 208;
+
+        const maxBlue = 4;
+        const minBlue = 249;
+
+        const redVal = 247 / (maxTemp - minTemp) * (temp - minTemp);
+        const blueVal = 4 / (maxTemp - minTemp) * (maxTemp - temp);
+        const greenVal = 4 / (maxTemp - minTemp) * (maxTemp - temp);
+
+
+        //76.5 178.5
+        console.log(redVal, blueVal, greenVal)
+    },
+
+    /**
+     * Create a weather icon object (icon number and weather description).
+     * @param {Object} prmWeatherDayObj - Forecast day.
+     */
+    setWeatherIconObj: function (prmWeatherDayObj) {
+        let weatherIcon = prmWeatherDayObj.Icon.toString();
+
+        let iconObj = {
+            Icon: '',
+            IconPhrase: ''
         }
-        if (prmCItyCode === '') {
-            var options = {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
-            };
-
-            function success(pos) {
-                var crd = pos.coords;
-                cityGeoLocationObj.latitude = crd.latitude;
-                cityGeoLocationObj.longitude = crd.longitude;
-            }
-
-            function error(err) {
-                console.warn(`ERROR(${err.code}): ${err.message}`);
-            }
-
-            navigator.geolocation.getCurrentPosition(success, error, options);
-            return cityGeoLocationObj;
+        if (weatherIcon.length < 2) {
+            weatherIcon = 0 + weatherIcon;
         }
+        iconObj.Icon = weatherIcon;
+        iconObj.IconPhrase = prmWeatherDayObj.IconPhrase;
 
-
+        return iconObj;
 
     },
 
     /**
-     * 
-     * @param {*} prmDate 
+     * Create a weather icon object by day time / night / day.
+     * @param {Object} prmWeatherDayObj - Forecast day.
+     * @param {boolean} prmIsDayTime - If Day time.
      */
+    getWeatherIconByDayTime: function (prmDayForecastObj, prmIsDayTime) {
+
+        let currDayTypeObj = {};
+        let weatherIconObj = {};
+
+        switch (prmIsDayTime) {
+            case false: // Night Time
+                currDayTypeObj = prmDayForecastObj.Night;
+
+                weatherIconObj = this.setWeatherIconObj(currDayTypeObj);
+
+                break;
+
+            case true: // Day Time
+                currDayTypeObj = prmDayForecastObj.Day;
+
+                weatherIconObj = this.setWeatherIconObj(currDayTypeObj);
+                break;
+
+        }
+
+        return weatherIconObj;
+    },
+
+    /**
+     * Return date weekday name
+     * @param {string} prmDate - Date.
+     */
+
     getWeekDay: function (prmDate) {
 
         const currDate = new Date(prmDate);
         var weekDayName = moment(currDate).format('dddd');
         return weekDayName;
     },
+
     /**
-     * 
+     * Returns location details (country name, city name)
+     * @param {string} prmUrlStr - Date.
      */
 
     getLocationInfo: function (prmUrlStr) {
@@ -62,6 +106,13 @@ const helpers = {
         return outObj;
 
     },
+
+    /**
+     * Returns weather object with relevant details
+     * @param {object} prmCurrWeatherObj - Weather forecast object.
+     * @param {boolean} prmIsMetric - Is Metric mode.
+     */
+
     getWeatherFilteredDataObj: function (prmCurrWeatherObj, prmIsMetric) {
 
         let weatherDataObj = {
@@ -106,9 +157,6 @@ const helpers = {
         return weatherDataObj;
     },
 
-    // helper3: function(param1, param2){
-
-    // }
 }
 
 

@@ -21,8 +21,8 @@ const FavoritesList = (props) => {
     let inputhtml = currFavorites.TemperatureUnitsIcon;
     const forecastList = currFavorites.map(function (item, index) {
         return <Grid key={index} item sm={12} xs={12} md={6} lg={3}>
-            <Paper className={classes.paper}>
-                {item.WeatherIcon ? <img className="weather-icon"
+            <Paper className="weather-forecast-box">
+                {item.WeatherIcon ? <img className="weather-forecast-icon"
                     src={`https://developer.accuweather.com/sites/default/files/${item.WeatherIcon}-s.png`}
                     alt={item.WeatherText}
                     title={item.WeatherText}></img>

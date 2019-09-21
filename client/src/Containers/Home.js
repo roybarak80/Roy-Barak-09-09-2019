@@ -59,6 +59,9 @@ class Home extends Component {
 
         const { cityCode } = this.props;
         const { isMetricUnits } = this.props;
+        const { currWeather } = this.props;
+        const isDayTime = currWeather[0].IsDayTime;
+
         if (prevProps.cityCode !== cityCode) {
             this.props.getCurrentWeather(cityCode);
             this.props.getCurrentForecast(cityCode, isMetricUnits);
@@ -75,8 +78,10 @@ class Home extends Component {
         const { currForecast } = this.props;
         const { currWeather } = this.props;
         const { isMetricUnits } = this.props;
+        const isDayTime = currWeather ? currWeather[0].IsDayTime : null;
+        
         const currWeatherObj = currWeather ? helpers.getWeatherFilteredDataObj(currWeather, isMetricUnits) : {};
-        const currForecastObj = Object.assign({}, currForecast ? currForecast : {}, { isMetricUnits: isMetricUnits });
+        const currForecastObj = Object.assign({}, currForecast ? currForecast : {}, { isMetricUnits: isMetricUnits }, { isDayTime: isDayTime });
 
         return (
             <div >
@@ -89,7 +94,7 @@ class Home extends Component {
                 <div className="curr-weather-box direction-column-space-between">
 
 
-                    <div className="flex-spread-evenly transparent-strip">
+                    <div className="flex-spread-evenly transparent-strip align-items-center">
                         <Fade top>
 
                             <CurrentWeather weatherInfo={currWeatherObj} ></CurrentWeather>

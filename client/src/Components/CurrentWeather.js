@@ -1,8 +1,5 @@
 import React from 'react';
 
-
-// import { connect } from 'react-redux';
-
 const CurrentWeather = (props) => {
 
     const { weatherInfo } = props;
@@ -19,13 +16,11 @@ const CurrentWeather = (props) => {
                 <div className="weather-city-wrapper">
                     <div className="weather-city-title">{weatherInfo.WeatherCity}</div>
                     <div>
-
                         <span>{weatherInfo.Temperature}</span><span dangerouslySetInnerHTML={{ __html: inputhtml }}></span>
                     </div>
                 </div>
             </div>
         )
-
 
     }
 

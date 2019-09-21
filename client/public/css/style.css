@@ -22,6 +22,7 @@
 
 }
 
+
 .flex-spread-evenly {
     display: flex;
     justify-content: space-between;
@@ -40,7 +41,9 @@
 }
 
 .transparent-strip {
-    background-color: #00000063;
+    background-color:#00000036;
+    
+    padding: 0 15px;
 }
 
 .forecast-panels {
@@ -70,6 +73,25 @@
 .weather-icon {
     width: 170px;
     height: 100px;
+}
+
+.weather-forecast-icon{
+    width: 125px;
+}
+
+.MuiPaper-root{
+    background-color: #97c3f58c!important;
+    display: flex;
+    align-items: center;
+}
+.weather-forecast-box{
+    color: rgba(0, 0, 0, 0.54);
+    height: 150px;
+    display: flex;
+    padding: 16px;
+    align-content: center;
+    flex-direction: column;
+     
 }
 
 .weather-city-wrapper {
@@ -196,28 +218,10 @@
     -ms-transition: all .4s ease;
     -o-transition: all .4s ease;
     transition: all .4s ease;
-
-    /* height: calc(100vh - 56px);
-    position: absolute;
-    right: 0px;
-    opacity: 0;
-    z-index: 2;
-    background-color: red;
-    width: 150px;
-    transition: all 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91); */
+  
 }
 
 
-
-
-/* .side-menu .ul-1-0-1-1 a,.side-menu .ul-1-0-1-1 li{
-    background: #343a40;
-    color: white;
-}
-.side-menu .ul-1-0-1-1 a:hover,.side-menu .ul-1-0-1-1 li:hover{
-    background: #343a40;
-    color: #8c8c8c;
-} */
 
 /**************AutoComplete*************/
 
@@ -232,6 +236,20 @@
 }
 
 @media screen and (max-width: 950px) {
+
+    .side-menu.active {
+        opacity: 1;
+        right: 0px;
+        width: 206px;
+        padding: 19px 12px;
+    }
+
+    .side-menu {
+
+        position: absolute;
+       
+      
+    }
 
     .curr-weather-box {
         height: 100%;
