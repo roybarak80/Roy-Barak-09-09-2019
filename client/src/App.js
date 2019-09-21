@@ -1,50 +1,49 @@
-import React, { Component } from 'react'
-import './App.css'
-import ReactDOM from 'react-dom';
-import { render } from 'react-dom';
-import axios from 'axios';
-import ImgList from './Components/ImgList';
-import SearchForm from './Components/SearchForm';
+import React from 'react';
+import NavBar from './Components/Navbar';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+// import Home from './Home';
+// import Favorites from '../containers/Favorites';
+// import SideMenu from '../components/SideMenu';
+//require('dotenv').config()
 
+const App = ({ isDarkTheme }) => (
 
-class App extends Component {
-  state = {
-    cow: '',
-    text: '',
-    users: [],
-    imgs: [],
-    loadingState: true
-  }
-  componentDidMount() {
-    this.performSearch();
-  }
+  <BrowserRouter>
+    {/* <div className={isDarkTheme ? 'App dark-theme-body' : 'App'}> */}
 
-  performSearch = (query = 'cats') => {
+    <NavBar />
+    {/* 
+      <div className="content-wrapper ">
 
-    axios
-      .get(
-        `/images/${query}`
-      )
-      .then(data => {
-        this.setState({ imgs: data.data.results, loadingState: false });
-      })
-      .catch(err => {
-        console.log('Error happened during fetching!', err);
-      });
-  };
+        <div className="main-content">
 
-  render() {
-    return (
-      <div>
-        <SearchForm onSearch={this.performSearch} />
-        <div class="container">
-          {this.state.loadingState
-            ? <p>Loading</p>
-            : <ImgList data={this.state.imgs} />}
+          <div className="container">
+            <div className="row ">
+              <div className="col-lg-12 mt-4">
+
+                <Route path="/" exact component={Home} />
+                <Route path="/Favorites" component={Favorites} />
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="side-menu-wrapper">
+          <SideMenu></SideMenu>
         </div>
       </div>
-    )
+    </div> */}
+
+  </BrowserRouter>
+);
+
+
+const mapStateToProps = state => {
+  return {
+    isDarkTheme: state.sitesReducer.isDarkTheme,
   }
 }
 
-export default App
+export default connect(mapStateToProps)(App);

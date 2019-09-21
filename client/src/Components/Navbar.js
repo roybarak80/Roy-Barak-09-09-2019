@@ -1,37 +1,34 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+const NavBar = ({ isDarkTheme }) => (
 
+  <nav className={isDarkTheme ? 'navbar navbar-expand-lg navbar-dark bg-dark static-top' : 'navbar navbar-expand-lg light-theme static-top'} >
+    <div className="container">
+      <Link className="navbar-brand" to="/">Herolo Weather App</Link>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon" />
+      </button>
+      <div className="collapse navbar-collapse" id="navbarResponsive">
+        <ul className="navbar-nav ml-auto">
 
-export default function navbar() {
-  const classes = useStyles();
+          <li className="nav-item">
+            <Link className="nav-link" to="/">Home</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/favorites">Favorites</Link>
+          </li>
 
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>xs=12</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-      </Grid>
+        </ul>
+      </div>
     </div>
-  );
+  </nav>
+);
+
+const mapStateToProps = state => {
+  return {
+    isDarkTheme: state.sitesReducer.isDarkTheme,
+  }
 }
+
+export default connect(mapStateToProps)(NavBar);
