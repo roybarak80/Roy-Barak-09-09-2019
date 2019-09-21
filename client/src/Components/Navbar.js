@@ -5,7 +5,7 @@ const NavBar = ({ isDarkTheme }) => (
 
   <nav className={isDarkTheme ? 'navbar navbar-expand-lg navbar-dark bg-dark static-top' : 'navbar navbar-expand-lg light-theme static-top'} >
     <div className="container">
-      <Link className="navbar-brand" to="/">Herolo Weather App</Link>
+      <Link className="navbar-brand" to="/">Herolo Weather App11</Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon" />
       </button>
