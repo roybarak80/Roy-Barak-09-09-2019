@@ -10,7 +10,7 @@ const SearchAutocomplete = ({
 
     return (
 
-        <div className="form-group position-relative">
+        <div className="autocomplete-wrapper">
             {searchResults ?
                 < Autocomplete
                     id="test-autocomplete"

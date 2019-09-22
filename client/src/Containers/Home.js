@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { getCurrentForecast, toggleWeatherUnits, getCurrentWeather, checkForCityCode } from '../actions/sitesActions';
 
@@ -85,7 +85,7 @@ class Home extends Component {
             <div >
 
                 <div className="row ">
-                    <div className="col-md-12">
+                    <div className="col-md-12 d-flex justify-content-center">
                         <SearchAutocomplete></SearchAutocomplete>
                     </div>
                 </div>
@@ -110,7 +110,7 @@ class Home extends Component {
                     </div>
 
                 </div>
-                <ToastContainer autoClose={2000} />
+                <ToastContainer autoClose={2000} position={toast.POSITION.BOTTOM_RIGHT} />
             </div>
 
 
@@ -120,7 +120,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-
+    console.log(state)
     return {
         currWeather: state.sitesReducer.currWeather,
         currForecast: state.sitesReducer.currForecast,

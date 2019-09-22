@@ -22,6 +22,15 @@ const sitesReducer = (state = initState, action) => {
 
     switch (action.type) {
 
+        case "SELECT_CITY_FORECAST_FROM_FAVORITE":
+
+            state = {
+                ...state,
+                cityCode: action.payload
+            }
+
+            break;
+
         case "CHECK_FOR_CITYCODE":
 
             state = {

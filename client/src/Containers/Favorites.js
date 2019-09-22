@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FavoritesList from '../Components/FavoritesList';
+import { onSelectCityFromFavorites } from '../actions/sitesActions';
+
 import Fade from 'react-reveal/Fade';
 
 class Favorites extends Component {
 
   render() {
-    const { currFavorites } = this.props;
+    const { currFavorites, onSelectCityFromFavorites } = this.props;
     return (
       <div>
         <Fade fadeInUp>
-          <FavoritesList currFavorites={currFavorites}></FavoritesList>
+          <FavoritesList currFavorites={currFavorites} onSelectCityFromFavorites={onSelectCityFromFavorites}></FavoritesList>
         </Fade>
       </div>
 
@@ -26,5 +28,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(Favorites);
+const mapDispatchToProps = dispatch => ({
+
+  onSelectCityFromFavorites: (foo) => { dispatch(onSelectCityFromFavorites(foo)) },
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
 

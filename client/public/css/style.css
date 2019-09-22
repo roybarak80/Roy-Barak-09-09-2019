@@ -1,3 +1,5 @@
+
+
 .position-relative {
     position: relative;
 }
@@ -41,8 +43,8 @@
 }
 
 .transparent-strip {
-    background-color:#00000036;
-    
+    background-color: #00000036;
+
     padding: 0 15px;
 }
 
@@ -59,6 +61,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)
 }
 
 .search-input {
@@ -75,23 +78,24 @@
     height: 100px;
 }
 
-.weather-forecast-icon{
+.weather-forecast-icon {
     width: 125px;
 }
 
-.MuiPaper-root{
-    background-color: #97c3f58c!important;
+.MuiPaper-root {
+    background-color: #97c3f58c !important;
     display: flex;
     align-items: center;
 }
-.weather-forecast-box{
+
+.weather-forecast-box {
     color: rgba(0, 0, 0, 0.54);
     height: 150px;
     display: flex;
     padding: 16px;
     align-content: center;
     flex-direction: column;
-     
+
 }
 
 .weather-city-wrapper {
@@ -199,18 +203,12 @@
 }
 
 .side-menu {
-
-    /* position: fixed; */
-    /* z-index: 4; */
+    
     overflow: auto;
-    /* top: 56px; */
-    /* right: -275px; */
     width: 1px;
     opacity: 0;
     padding: 0px;
-    /* height: 100% ; */
     height: calc(100vh - 47px);
-
     color: #343838;
     overflow: hidden;
     -webkit-transition: all .7s ease;
@@ -218,24 +216,25 @@
     -ms-transition: all .4s ease;
     -o-transition: all .4s ease;
     transition: all .4s ease;
-  
+
 }
 
 
 
 /**************AutoComplete*************/
 
-.search-results {
-    position: absolute !important;
-    width: 100%;
-    z-index: 111;
-    background-color: #fff;
-    max-height: 200px;
-    overflow-y: auto;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+.autocomplete-wrapper {
+    width: 50%;
+    margin-bottom:15px;
 }
 
+/***************************************/ 
 @media screen and (max-width: 950px) {
+
+    .autocomplete-wrapper {
+        
+        width: 100%;
+    }
 
     .side-menu.active {
         opacity: 1;
@@ -245,19 +244,24 @@
     }
 
     .side-menu {
-
         position: absolute;
+        height: 100%;
+    }
+
+    .side-menu .toggle-sidebar {
        
-      
+        top: 30%;
+        right: 206px;
+        
     }
 
     .curr-weather-box {
         height: 100%;
     }
 
-    .toggle-sidebar {
+    /* .toggle-sidebar {
         top: 20%;
-    }
+    } */
 
     .forecast-box {
         width: 100%;
@@ -272,20 +276,13 @@
     }
 }
 
-
-/***/
+/***************************************/ 
 
 .weather-icon-wrapper {
     width: 115px;
     height: 77px;
     overflow: hidden;
 }
-
-/* .btn .btn-danger{
-    transform: rotateY(180deg);
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
- } */
 
 .favorite-icon {
     font-size: 22px;

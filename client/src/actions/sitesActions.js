@@ -4,6 +4,15 @@ import {
 import helpers from '../helpers/Helpers';
 import axios from 'axios';
 
+
+export const onSelectCityFromFavorites = (cityCode) => {
+
+    return {
+        type: "SELECT_CITY_FORECAST_FROM_FAVORITE",
+        payload: cityCode
+    };
+}
+
 /**
  * checkForCityCode
  * Get CityCode by Coordinates
@@ -126,11 +135,11 @@ export const toggleWeatherUnits = (isMetricUnits) => {
  * @param {string} textFeldValue -Selcted city key code.
  */
 
-export const onSelectCity = (textFeldValue) => {
+export const onSelectCity = (cityCode) => {
 
     return {
         type: "SELECT_CITY_FORECAST",
-        payload: textFeldValue
+        payload: cityCode
     };
 }
 
