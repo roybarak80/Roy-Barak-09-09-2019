@@ -4,6 +4,9 @@
     position: relative;
 }
 
+.favorite-tempature-text{
+    font-size: 16px;
+}
 /* Layout Classes */
 
 .direction-column-space-between {

@@ -35,8 +35,6 @@ const CurrForecast = (props) => {
                 const dayOfWeek = Helpers.getWeekDay(prm.Date);
                 const forecastIcon = Helpers.getWeatherIconByDayTime(prm, currForecast.isDayTime);
 
-                const forecastColor = Helpers.convertTempToRgb(prm);
-
                 return <Grid key={index} item sm={12} xs={12} md lg>
                     <Paper className="weather-forecast-box">
                         {forecastIcon ? <img className="weather-forecast-icon"

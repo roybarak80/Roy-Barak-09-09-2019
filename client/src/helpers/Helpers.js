@@ -2,29 +2,6 @@ import moment from "moment";
 
 const helpers = {
 
-    convertTempToRgb: function () {
-        const temp = 30;
-        const maxTemp = 100;
-        const minTemp = 0;
-
-        const maxRed = 247;
-        const minRed = 61;
-
-        const maxGreen = 4;
-        const minGreen = 208;
-
-        const maxBlue = 4;
-        const minBlue = 249;
-
-        const redVal = 247 / (maxTemp - minTemp) * (temp - minTemp);
-        const blueVal = 4 / (maxTemp - minTemp) * (maxTemp - temp);
-        const greenVal = 4 / (maxTemp - minTemp) * (maxTemp - temp);
-
-
-        //76.5 178.5
-        console.log(redVal, blueVal, greenVal)
-    },
-
     /**
      * Create a weather icon object (icon number and weather description).
      * @param {Object} prmWeatherDayObj - Forecast day.
@@ -56,6 +33,7 @@ const helpers = {
         let currDayTypeObj = {};
         let weatherIconObj = {};
 
+
         switch (prmIsDayTime) {
             case false: // Night Time
                 currDayTypeObj = prmDayForecastObj.Night;
@@ -69,6 +47,9 @@ const helpers = {
 
                 weatherIconObj = this.setWeatherIconObj(currDayTypeObj);
                 break;
+            default:
+                break;
+
 
         }
 
